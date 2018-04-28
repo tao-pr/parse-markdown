@@ -4,7 +4,7 @@
   "description": "Structural parser of Markdown",
   "main": "markdown.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jasmine test/*.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/starcolon/parse-markdown/issues"
   },
-  "homepage": "https://github.com/starcolon/parse-markdown#readme"
+  "homepage": "https://github.com/starcolon/parse-markdown#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
 }
