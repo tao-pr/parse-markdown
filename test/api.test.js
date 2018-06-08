@@ -12,7 +12,7 @@ describe('Parser Interface', () => {
     expect(typeof Parser.parseText).toBe('function');
   })
 
-  it('should parse text', () => {
+  it('should parse text', (done) => {
     let txt = `# Headline
     ## 2nd headline
     woooh
@@ -22,13 +22,19 @@ describe('Parser Interface', () => {
     <h2>2nd headline woooh
     lastline`;
 
-    expect(Parser.parseText(txt)).toEqual(output);
+    Parser.parseText(txt).then((actual) => {
+      expect(actual).toEqual(output);  
+      done();
+    })
   })
 
   it('should parse file', () => {
     let mdFile = '../samples/primitive.md';
     let output = io.read('../samples/primitive.html');
 
-    expect(Parser.parseFile(mdFile).toEqual(output));
+    Parser.parseFile(mdFile).then((actual) => {
+      expect(actual).toEqual(output);
+      done();
+    })
   })
 })
