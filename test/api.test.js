@@ -4,7 +4,9 @@ const Parser = require('../markdown.js');
 const io = require('../lib/io.js');
 
 describe('Parser Interface', () => {
-  beforeEach(() => {})
+  beforeEach(() => {
+    process.env.isDebug = true;
+  })
 
   it('should export the proper API', () => {
     expect(Object.keys(Parser)).toEqual(expect.arrayContaining(['parseFile','parseText']));
