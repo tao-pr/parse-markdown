@@ -21,7 +21,7 @@ describe('Parser Interface', () => {
     lastline`;
     
     let output = `<h1>Headline</h1>
-    <h2>2nd headline woooh
+    <h2>2nd headline woooh</h2>
     lastline`;
 
     Parser.parseText(txt).then((actual) => {
