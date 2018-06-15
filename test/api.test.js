@@ -6,7 +6,7 @@ const io = require('../lib/io.js');
 String.prototype.strip = function(){
   var str = this.valueOf();
   var trim = (a) => a.trim();
-  return str.split('\n').map(trim).join('\n');
+  return str.split('\n').map(trim).join('');
 }
 
 describe('Parser Interface', () => {
@@ -29,8 +29,8 @@ describe('Parser Interface', () => {
     let output = `<h1>Headline</h1>
     <h2>2nd headline</h2>
     woooh
-    lastline
-    `.strip();
+    lastline`
+    .strip();
 
     Parser.parseText(txt).then((actual) => {
       expect(actual.strip()).toEqual(output);  
