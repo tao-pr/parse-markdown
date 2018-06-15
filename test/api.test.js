@@ -38,7 +38,7 @@ describe('Parser Interface', () => {
     })
   })
 
-  it('should parse file', () => {
+  it('should parse file', (done) => {
     let mdFile = '../samples/primitive.md';
     let output = io.read('../samples/primitive.html');
 
