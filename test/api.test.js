@@ -3,6 +3,12 @@ const assert = require('assert')
 const Parser = require('../markdown.js');
 const io = require('../lib/io.js');
 
+String.prototype.strip = function(){
+  var str = this.valueOf();
+  var trim = (a) => a.trim();
+  return str.split('\n').map(trim).join('\n');
+}
+
 describe('Parser Interface', () => {
   beforeEach(() => {
     process.env.isDebug = true;
@@ -21,11 +27,13 @@ describe('Parser Interface', () => {
     lastline`;
     
     let output = `<h1>Headline</h1>
-    <h2>2nd headline woooh</h2>
-    lastline`;
+    <h2>2nd headline</h2>
+    woooh
+    lastline
+    `.strip();
 
     Parser.parseText(txt).then((actual) => {
-      expect(actual).toEqual(output);  
+      expect(actual.strip()).toEqual(output);  
       done();
     })
   })
