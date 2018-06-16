@@ -39,8 +39,8 @@ describe('Parser Interface', () => {
   })
 
   it('should parse file', (done) => {
-    let mdFile = '../samples/primitive.md';
-    let output = io.read('../samples/primitive.html');
+    let mdFile = './samples/primitive.md';
+    let output = io.read('./samples/primitive.html');
 
     Parser.parseFile(mdFile).then((actual) => {
       expect(actual).toEqual(output);
