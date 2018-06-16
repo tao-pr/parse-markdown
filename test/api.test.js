@@ -26,10 +26,10 @@ describe('Parser Interface', () => {
     woooh
     lastline`;
     
-    let output = `<h1>Headline</h1>
-    <h2>2nd headline</h2>
+    let output = `<h1>Headline</h1><div>
+    </div><h2>2nd headline</h2><div>
     woooh
-    lastline`
+    lastline</div>`
     .strip();
 
     Parser.parseText(txt).then((actual) => {
