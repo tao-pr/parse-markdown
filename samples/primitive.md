@@ -8,7 +8,7 @@ Some text under the headline with `inline code block` and **bold text** .
 
 > Some quote text here
 
-With another line of text here with **italic text**.
+With another line of text here with *italic text* .
 
 Links go here
 
