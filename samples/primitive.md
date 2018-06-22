@@ -1,6 +1,6 @@
 # Headline
 
-Some text under the headline with `inline code block` and *bold text*.
+Some text under the headline with `inline code block` and **bold text** .
 
 ---
 
