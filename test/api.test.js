@@ -23,13 +23,13 @@ describe('Parser Interface', () => {
   it('should parse text', (done) => {
     let txt = `# Headline
     ## 2nd headline
-    woooh
+    woooh <b>bold</b>
     #### header #4
     lastline`;
     
     let output = `<h1>Headline</h1><div>
     </div><h2>2nd headline</h2>
-    <div>woooh</div>
+    <div>woooh <b>bold</b></div>
     <h4>header #4</h4>
     <div>lastline</div>`
     .strip();
