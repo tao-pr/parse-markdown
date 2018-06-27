@@ -24,12 +24,14 @@ describe('Parser Interface', () => {
     let txt = `# Headline
     ## 2nd headline
     woooh
+    #### header #4
     lastline`;
     
     let output = `<h1>Headline</h1><div>
-    </div><h2>2nd headline</h2><div>
-    woooh
-    lastline</div>`
+    </div><h2>2nd headline</h2>
+    <div>woooh</div>
+    <h4>header #4</h4>
+    <div>lastline</div>`
     .strip();
 
     Parser.parseText(txt).then((actual) => {
