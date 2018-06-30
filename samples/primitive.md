@@ -24,4 +24,5 @@ or automatic link as http://starcolon.com
 
   - foo
   - bar
+  - **bold** and `code`
 
