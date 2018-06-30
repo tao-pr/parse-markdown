@@ -20,3 +20,8 @@ Links go here
 [link #3](http://starcolon.com)
 or automatic link as http://starcolon.com
 
+### List
+
+  - foo
+  - bar
+
