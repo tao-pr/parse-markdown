@@ -26,3 +26,4 @@ or automatic link as http://starcolon.com
   - bar
   - **bold** and `code`
 
+Inline image ![alt text](http://localhost/sample.png)
