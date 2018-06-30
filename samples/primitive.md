@@ -10,6 +10,9 @@ Some text under the headline with `inline code block` and **bold text** .
 
 With another line of text here with *italic text* .
 
+Without ENTER between lines,
+These sentences are inside the same div.
+
 Links go here
 
 [link #1](http://localhost/)
