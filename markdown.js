@@ -29,7 +29,7 @@ var args     = process.argv.slice(2);
         console.log('... Parsing : ', inputFile);
         var fullInputPath = inputPath + '/' + inputFile; 
         var fullOutputPath = outputPath + '/' + inputFile.replace(/\.md$/, '.html');
-        batch.add(Parser.parseFile(fullInputPath).asHTMLFile(fullOutputPath));
+        batch.push(Parser.parseFile(fullInputPath).asHTMLFile(fullOutputPath));
       }
     })
 
