@@ -2,6 +2,7 @@ const assert = require('assert')
 
 const Parser = require('../markdown.js');
 const io = require('../lib/io.js');
+const fs = require('fs');
 
 String.prototype.strip = function(){
   var str = this.valueOf();
@@ -11,7 +12,7 @@ String.prototype.strip = function(){
 
 describe('Parser Interface', () => {
   beforeEach(() => {
-    process.env.isDebug = true;
+    // process.env.isDebug = true;
   })
 
   it('should export the proper API', () => {
@@ -50,5 +51,37 @@ describe('Parser Interface', () => {
         done();
       })
     })
+  })
+
+  it('should write a parsed output to a file', (done) => {
+    let txt = `
+    #### Header @
+    unknown paragraph and http://link`;
+    
+    let output = `
+     <h4>Header @</h4><div>
+      unknown paragraph and <a href="http://link">http://link</a>
+      </div>
+      </div><div class="top-margin">`.strip();
+
+    let outputFile = './samples/volatileOutput.html';
+
+    var deleteFile = function(){
+      return new Promise((done,reject) => {
+        fs.unlink(outputFile, (err) => {
+          // Suppress IO error
+          done(outputFile);
+        })
+      })
+    }
+
+    deleteFile()
+      .then((_) => Parser.parseText(txt).asHTMLFile(outputFile)) // Save parsed Markdown as HTML file
+      .then(Parser.parseFile) // Read HTML back in
+      .then((html) => {
+        expect(html.strip()).toEqual(output)
+      })
+      .then(deleteFile)
+      .then((_) => done())
   })
 })
