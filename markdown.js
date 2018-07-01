@@ -6,6 +6,7 @@
 
 const Parser = require('./lib/parser')
 var colors   = require('colors');
+var fs       = require('fs');
 var args     = process.argv.slice(2);
 
 (function (){
@@ -20,7 +21,24 @@ var args     = process.argv.slice(2);
   console.log('Input path: '.cyan, inputPath);
   console.log('outputPath path : '.cyan, outputPath);
 
-  // Finish
+  fs.readdir(inputPath, (error,files) => {
+    var batch = [];
+    files.forEach((fpath) => {
+      var inputFile = fpath.toLowerCase()
+      if (inputFile.match(/^(.+)\.md$/)){
+        console.log('... Parsing : ', inputFile);
+        var fullInputPath = inputPath + '/' + inputFile; 
+        var fullOutputPath = outputPath + '/' + inputFile.replace(/\.md$/, '.html');
+        batch.add(Parser.parseFile(fullInputPath).asHTMLFile(fullOutputPath));
+      }
+    })
+
+    // Wait until all batch process is complete
+    Promise.all(batch).then(() => {
+      console.log('All files are parsed.'.green);
+      process.exit(0);
+    })
+  })
 
 })()
 
