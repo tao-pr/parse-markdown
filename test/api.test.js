@@ -4,6 +4,11 @@ const Parser = require('../markdown.js');
 const io = require('../lib/io.js');
 const fs = require('fs');
 
+function strip(str) {
+  var trim = (a) => a.trim();
+  return str.split('\n').map(trim).join('');
+}
+
 String.prototype.strip = function(){
   var str = this.valueOf();
   var trim = (a) => a.trim();
@@ -28,15 +33,14 @@ describe('Parser Interface', () => {
     #### header #4
     lastline`;
     
-    let output = `<h1>Headline</h1><div>
+    let output = strip(`<h1>Headline</h1><div>
     </div><h2>2nd headline</h2>
     <div>woooh <b>bold</b></div>
     <h4>header #4</h4>
-    <div>lastline</div>`
-    .strip();
+    <div>lastline</div>`);
 
     Parser.parseText(txt).then((actual) => {
-      expect(actual.strip()).toEqual(output);  
+      expect(strip(actual)).toEqual(output);  
       done();
     })
   })
@@ -47,7 +51,7 @@ describe('Parser Interface', () => {
 
     Parser.parseFile(mdFile).then((actual) => {
       outputP.then(output => {
-        expect(actual.strip()).toEqual(output.strip());
+        expect(strip(actual)).toEqual(strip(output));
         done();
       })
     })
@@ -58,11 +62,11 @@ describe('Parser Interface', () => {
     #### Header @
     unknown paragraph and http://link`;
     
-    let output = `
+    let output = strip(`
      <h4>Header @</h4><div>
       unknown paragraph and <a href="http://link">http://link</a>
       </div>
-      </div><div class="top-margin">`.strip();
+      </div><div class="top-margin">`);
 
     let outputFile = './samples/volatileOutput.html';
 
@@ -79,7 +83,7 @@ describe('Parser Interface', () => {
       .then((_) => Parser.parseText(txt).asHTMLFile(outputFile)) // Save parsed Markdown as HTML file
       .then(Parser.parseFile) // Read HTML back in
       .then((html) => {
-        expect(html.strip()).toEqual(output)
+        expect(strip(html)).toEqual(output)
       })
       .then(deleteFile)
       .then((_) => done())
