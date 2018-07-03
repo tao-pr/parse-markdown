@@ -60,11 +60,12 @@ describe('Parser Interface', () => {
   it('should write a parsed output to a file', (done) => {
     let txt = `
     #### Header @
-    unknown paragraph and http://link`;
+    unknown paragraph and http://link with *italic text*.`;
     
     let output = strip(`
      <h4>Header @</h4><div>
-      unknown paragraph and <a href="http://link">http://link</a>
+      unknown paragraph and <a href="http://link">http://link</a> with <italic>
+      italic text</italic>.
       </div>
       </div><div class="top-margin">`);
 
