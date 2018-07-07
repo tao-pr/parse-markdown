@@ -45,6 +45,35 @@ describe('Parser Interface', () => {
     })
   })
 
+  it('should parse text with template', (done) => {
+    let templateFile = './samples/html/template.html'
+    let txt = `# Headline
+    ## 2nd headline
+    woooh <b>bold</b>
+    #### header #4
+    lastline`;
+
+    let template = strip(`
+      <html>
+      <head>headline</head>
+      <body>
+        @1
+      </body>
+      </html>
+    `);
+    
+    let output = strip(`<h1>Headline</h1><div>
+    </div><h2>2nd headline</h2>
+    <div>woooh <b>bold</b></div>
+    <h4>header #4</h4>
+    <div>lastline</div>`);
+
+    Parser.parseText(txt, templateFile).then((actual) => {
+      expect(strip(actual)).toEqual(template.replace('@1', output));  
+      done();
+    }) 
+  })
+
   it('should parse file', (done) => {
     let mdFile = './samples/primitive.md';
     let outputP = io.read('./samples/primitive.html');
