@@ -37,16 +37,23 @@ parse_file(){
 
   mkdir -p "${dest_dir}${source_subdir}"
 
-  echo "  d = $dest_fullpath"
+  if [ "$fname" != "*.md" ]; then
+    echo "${CYAN}  $fname ${RESET}"
+  fi
 }
 
 process_dir(){
   echo Reading files in ${GREEN}$1 ${RESET}
-  local 
-  for f in "$1"/*.md
-  do
-    parse_file "$f" "$1"
-  done
+  # for f in "$1"/*.md
+  # do
+  #   parse_file "$f" "$1"
+  # done
+
+  local n=${#source_dir}
+  local source_subdir=$(echo "$1" | cut -c${n}-)
+  local out_subdir="${dest_dir}${source_subdir}"
+  mkdir -p $out_subdir
+  node markdown.js $1 $out_subdir
 
   # Subdir 
   for d in "$1"/*; do
