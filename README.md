@@ -26,6 +26,15 @@ Execute following command:
   $ node markdown.js [inputPath] [outputPath]
 ```
 
+### Usage : Recursively parse Markdown files in subdirectories
+
+Execute the script as follow to run through the subdirectories recursively.
+The script produces the output in the same directory structure as inputs in the specified output directory.
+
+```bash
+  $ ./compile.sh [inputRootPath] [outputRootPath]
+```
+
 Where `inputPath` contains the Markdown files.
 
 ### Licence
