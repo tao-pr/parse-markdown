@@ -22,6 +22,7 @@ fi
 
 source_dir="$1"
 dest_dir="$2"
+template_path="$3" # Template file name
 
 parse_file(){
   local fpath="$1"
@@ -53,7 +54,7 @@ process_dir(){
   local source_subdir=$(echo "$1" | cut -c${n}-)
   local out_subdir="${dest_dir}${source_subdir}"
   mkdir -p $out_subdir
-  node markdown.js $1 $out_subdir
+  node markdown.js $1 $out_subdir $template_path
 
   # Subdir 
   for d in "$1"/*; do
