@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Generate HTML files from the input sources
-# ./compile.sh [input_dir] [output_dir]
+# ./compile.sh [input_dir] [output_dir] [template_file]
+#
+#     [input_dir] specifies where to pick the input .md files (recursive)
+#     [output_dir] specifies where to save the output .html files
+#     [template_file] (optional) specifies the path of the template file
 
 RESET=$(echo -en '\033[0m')
 RED=$(echo -en '\033[00;31m')
