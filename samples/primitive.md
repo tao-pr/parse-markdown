@@ -22,6 +22,8 @@ Links go here
 [link #3](http://starcolon.com)
 or automatic link as http://starcolon.com
 
+[button href="http://foo.baz" caption="my button"]
+
 ### List
 
   - foo
