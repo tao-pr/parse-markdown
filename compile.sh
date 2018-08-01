@@ -58,7 +58,7 @@ process_dir(){
   local source_subdir=$(echo "$1" | cut -c${n}-)
   local out_subdir="${dest_dir}${source_subdir}"
   mkdir -p $out_subdir
-  # TAOTODO: Execute markdown.js from the script location rel path
+
   node markdown.js $1 $out_subdir $template_path
 
   # Subdir 

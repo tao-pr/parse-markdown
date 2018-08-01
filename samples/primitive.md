@@ -2,7 +2,7 @@
 
 Some text under the headline with `inline code block` and **bold text** .
 
-
+[title]: <> (primitive sample)
 
 ---
 
