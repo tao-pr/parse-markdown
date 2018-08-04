@@ -47,7 +47,8 @@ describe('Parser Interface', () => {
 
   it('should parse text with template', (done) => {
     let templateFile = './samples/html/template.html'
-    let txt = `# Headline
+    let txt = `[tag]: <> (tag value goes here)
+    # Headline
     ## 2nd headline
     woooh <b>bold</b>
     #### header #4
@@ -55,7 +56,10 @@ describe('Parser Interface', () => {
 
     let template = strip(`
       <html>
-      <head>headline</head>
+      <head>
+        <title>headline</title>
+        <tag>@tag</tag>
+      </head>
       <body>
         @1
       </body>
@@ -69,7 +73,9 @@ describe('Parser Interface', () => {
     <div>lastline</div>`);
 
     Parser.parseText(txt, templateFile).then((actual) => {
-      expect(strip(actual)).toEqual(template.replace('@1', output));  
+      expect(strip(actual)).toEqual(template
+        .replace('@1', output)
+        .replace('@tag', 'tag value goes here'));  
       done();
     }) 
   })
