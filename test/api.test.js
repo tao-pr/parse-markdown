@@ -80,6 +80,28 @@ describe('Parser Interface', () => {
     }) 
   })
 
+  it('should parse with predefined function', (done) => {
+    let txt = `# untitled
+    text here
+    [select id="hey" items="a,b,cc,d,ee"]`;
+
+    let output = `<h1>untitled</h1>
+    <div>text here
+    <select id="hey">
+    <option value="a"/>
+    <option value="b"/>
+    <option value="cc"/>
+    <option value="d"/>
+    <option value="ee"/>
+    </select>
+    </div>`
+
+    Parser.parseText(txt).then((actual) => {
+      expect(strip(actual)).toEqual(strip(output))
+      done();
+    })
+  })
+
   it('should parse file', (done) => {
     let mdFile = './samples/primitive.md';
     let outputP = io.read('./samples/primitive.html');
