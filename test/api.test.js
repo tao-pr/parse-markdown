@@ -88,11 +88,11 @@ describe('Parser Interface', () => {
     let output = `<h1>untitled</h1>
     <div>text here
     <select id="hey">
-    <option value="a"/>
-    <option value="b"/>
-    <option value="cc"/>
-    <option value="d"/>
-    <option value="ee"/>
+    <option value="a">a</option>
+    <option value="b">b</option>
+    <option value="cc">cc</option>
+    <option value="d">d</option>
+    <option value="ee">ee</option>
     </select>
     </div>`
 
